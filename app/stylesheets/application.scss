@@ -1,0 +1,62 @@
+@import "compass/css3";
+@import "blueprint";
+@import "blueprint/fancy-type";
+
+body {
+	font-family: $blueprint-font-family;
+}
+
+#header {
+	width: 100%;
+	height: 35px;
+	background: #ccc;
+	margin: 0px;
+	
+	h1 {
+		float: left;
+		width: 100%;
+		margin: 2px;
+		font-size: 1.5em;
+	}
+}
+
+#page-content {
+	@include container;
+	//@include showgrid;
+}
+
+.tweet-container {
+	@include prepend(0.5);
+	@include column(7.5);
+	margin: 15px 0px 0px 0px;
+	.tweet {
+		@include single-box-shadow;
+		@include background-image(linear-gradient(white, #aaaaaa));
+		margin: 0px;
+		padding: 2px;
+		border: 1px solid #ccc;
+		min-height: 100px;
+	
+		img {
+			@include column(2);
+			margin: 0px;
+			width: 48px;
+		}
+	
+		h1 {
+			@include column(6);
+			margin: 0px;
+			margin-left: 5px;
+			font-weight: bold;
+			font-size: 0.85em;
+		}
+		p {
+			@include column(6);
+			margin: 0px;
+			margin-left: 5px;
+			font-weight: thin;
+			font-size: 0.85em;
+		}
+	}
+}
+
