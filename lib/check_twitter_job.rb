@@ -9,9 +9,19 @@ class CheckTwitterJob < Struct.new(:hash_tag)
     
     RAILS_DEFAULT_LOGGER.info("\n Check Twitter Job Running #{hash_tag} \n")
     
-    # Retrieve latest tweets
+    # Get latest tweet to use as baseline
+    latest_tweet_id = Tweet.maximum('tweet_id')
+    
     search = Twitter::Search.new
-    results = search.hashtag(hash_tag).no_retweets.page(1).fetch
+    unless(latest_tweet_id.nil?)
+      # Retrieve latest tweets since baseline
+      results = search.containing(hash_tag).no_retweets
+                      .since_id(latest_tweet_id).page(1).fetch
+    else
+      # Setup the initial set of tweets for topic
+      results = search.containing(hash_tag).no_retweets
+                      .page(1).fetch
+    end
     
     results.each do |result|
       tweet = Tweet.new
@@ -25,10 +35,12 @@ class CheckTwitterJob < Struct.new(:hash_tag)
   
   def success(job)
      RAILS_DEFAULT_LOGGER.info("\n Check Twitter Job Successful \n")
+     Delayed::Job.enqueue(CheckTwitterJob.new(args[:hash_tag]), 1.minute.from_now)
   end
   
   def error(job, exception)
      RAILS_DEFAULT_LOGGER.error("\n Check Twitter Job Error #{exception.message}\n")
+     Delayed::Job.enqueue(CheckTwitterJob.new(args[:hash_tag]), 5.minutes.from_now)
   end
   
   def failure
