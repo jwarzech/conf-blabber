@@ -15,7 +15,7 @@
 
 		usedIndexes.push(index)
 		
-		$($('.tweet-container')[index]).html("<%= escape_javascript(raw render(tweet)) %>");
+		$($('.tweet-container')[index]).html("<%= escape_javascript(raw render(tweet)) %>").show('puff');
 	<% end %>
 <% end %>
 $('#latest_tweet').val("<%= escape_javascript(raw @latest_tweet) %>")
