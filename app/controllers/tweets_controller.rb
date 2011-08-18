@@ -1,8 +1,10 @@
 class TweetsController < ApplicationController
   def index
-    @tweets = Tweet.where("created_at > ?", params[:after])
-                   .order("created_at desc")
-                   .limit(15)
-    @latest_tweet = Time.new
+    unless params[:after] == 0
+      @tweets =  Tweet.next_set(params[:after])
+    else
+      @tweets = Tweet.latest_set
+    end
+    @latest_tweet = @tweets.maximum(:id)
   end
 end
