@@ -1,0 +1,4 @@
+<% unless @tweets.nil? %>
+	$('#tweets').prepend("<%= escape_javascript(raw render(@tweets)) %>")
+<% end %>
+$('#latest_tweet').val("<%= escape_javascript(raw @latest_tweet) %>")

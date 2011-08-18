@@ -4,4 +4,8 @@
 	   2. Ajax load new ones periodically and fill in a random space.
 -->
 
+<%= hidden_field_tag 'latest_tweet', @latest_tweet %>
+
+<div id="tweets">
 <%= render @tweets %>
+</div>
