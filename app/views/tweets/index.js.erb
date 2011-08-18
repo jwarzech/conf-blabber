@@ -1,4 +1,13 @@
+/* TODO
+ * 1. Don't load a full 15 each iteration
+ * 2. Save the latest tweet time not the current time
+*/
+
 <% unless @tweets.nil? %>
-	$('#tweets').prepend("<%= escape_javascript(raw render(@tweets)) %>")
+	var index = 0;
+	<% @tweets.each do |tweet| %>
+		$($('.tweet-container')[index++]).html("<%= escape_javascript(raw render(tweet)) %>");
+	
+	<% end %>
 <% end %>
 $('#latest_tweet').val("<%= escape_javascript(raw @latest_tweet) %>")

@@ -4,7 +4,7 @@ jQuery.ajaxSetup({
 
 $(function () {
 	if($('#tweets').length > 0) {
-		setTimeout(updateTweets, 10000);
+		updateTweets();
 	}
 });
 

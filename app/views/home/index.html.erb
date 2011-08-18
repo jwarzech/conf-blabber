@@ -1,11 +1,7 @@
-
-<!-- TODO:
-	   1. Load enough tweet spaces to fill the screen (even if they 		  		   are blank)  Even initially load blank ones.
-	   2. Ajax load new ones periodically and fill in a random space.
--->
-
 <%= hidden_field_tag 'latest_tweet', @latest_tweet %>
-
 <div id="tweets">
-<%= render @tweets %>
+<% 15.times do %>
+	<div class="tweet-container">
+	</div>
+<% end %>
 </div>
