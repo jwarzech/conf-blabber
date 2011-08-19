@@ -9,6 +9,9 @@ How to install:
 	
 How to run:
 
+	rails server
 	script/delayed_job start
 	rake start_polling['some_topic']
+	
+
 	
