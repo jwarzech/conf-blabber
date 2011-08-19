@@ -17,3 +17,6 @@ gem 'delayed_job'
 
 # https://github.com/jnunemaker/twitter
 gem 'twitter'
+
+# http://hirefireapp.com
+gem 'hirefireapp'
