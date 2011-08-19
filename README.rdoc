@@ -1,0 +1,13 @@
+= conf-blabber
+
+conf-blabber is an aggregation of twitter chatter regarding a specific topic or event (primarily focused on a conference).  It was created as a demo for a talk given on Heroku deployment tips & tricks at Grand Rapids BarCamp 2011.
+
+How to install:
+
+  bundle install
+  rake db:migrate
+	
+How to run:
+
+	script/delayed_job start
+	rake start_polling['some_topic']
