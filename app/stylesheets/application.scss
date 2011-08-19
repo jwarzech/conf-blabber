@@ -28,14 +28,14 @@ body {
 .tweet-container {
 	@include prepend(0.5);
 	@include column(7.5);
-	margin: 15px 0px 0px 0px;
+	margin: 30px 0px 0px 0px;
 	.tweet {
 		@include single-box-shadow;
 		@include background-image(linear-gradient(white, #aaaaaa));
 		margin: 0px;
 		padding: 2px;
 		border: 1px solid #ccc;
-		min-height: 100px;
+		min-height: 115px;
 	
 		img {
 			@include column(2);

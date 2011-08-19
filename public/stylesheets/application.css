@@ -33,7 +33,7 @@ body {
   float: left;
   margin-right: 10px;
   width: 290px;
-  margin: 15px 0px 0px 0px;
+  margin: 30px 0px 0px 0px;
 }
 /* line 147, ../../../../.rvm/gems/ruby-1.9.2-p290/gems/compass-0.11.4/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html .tweet-container {
@@ -54,7 +54,7 @@ body {
   margin: 0px;
   padding: 2px;
   border: 1px solid #ccc;
-  min-height: 100px;
+  min-height: 115px;
 }
 /* line 40, ../../app/stylesheets/application.scss */
 .tweet-container .tweet img {

@@ -1,22 +1,24 @@
-/* TODO
- * 1. Clear the existing tweets
- * 2. Don't allow new tweets to go into containers from last set
-*/
-
 <% unless @tweets.nil? %>
 	var usedIndexes = new Array();
 	var index;
 	
-	<% @tweets.each do |tweet| %>
+	<% @tweets.each do |tweet| %>		
+		// Place tweet into an unused position
 		do
 		{
-			index = Math.floor(Math.random() * 15)
+			index = Math.floor(Math.random() * $('.tweet-container:empty').length)
 		} while($.inArray(index, usedIndexes) > -1)
 
 		usedIndexes.push(index)
+		$($('.tweet-container:empty')[index]).html("<%= escape_javascript(raw render(tweet)) %>").show('puff');
 		
-		$($('.tweet-container')[index]).html("<%= escape_javascript(raw render(tweet)) %>").show('puff');
+		// Remove tweets from last fetch
+		$('.expire').parent().empty();
 	<% end %>
 <% end %>
+
+// Label tweets to be removed next fetch
+$('.tweet').addClass('expire');
 $('#latest_tweet').val("<%= escape_javascript(raw @latest_tweet) %>")
+
 

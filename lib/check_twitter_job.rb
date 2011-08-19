@@ -5,8 +5,7 @@ class CheckTwitterJob < Struct.new(:hash_tag)
      RAILS_DEFAULT_LOGGER.info("\n Check Twitter Job Queued \n")
   end
   
-  def perform
-    
+  def perform   
     RAILS_DEFAULT_LOGGER.info("\n Check Twitter Job Running #{hash_tag} \n")
     
     # Get latest tweet to use as baseline
@@ -35,12 +34,12 @@ class CheckTwitterJob < Struct.new(:hash_tag)
   
   def success(job)
      RAILS_DEFAULT_LOGGER.info("\n Check Twitter Job Successful \n")
-     Delayed::Job.enqueue(CheckTwitterJob.new(args[:hash_tag]), 1.minute.from_now)
+     Delayed::Job.enqueue(CheckTwitterJob.new(hash_tag), 1.minute.from_now)
   end
   
   def error(job, exception)
      RAILS_DEFAULT_LOGGER.error("\n Check Twitter Job Error #{exception.message}\n")
-     Delayed::Job.enqueue(CheckTwitterJob.new(args[:hash_tag]), 5.minutes.from_now)
+     Delayed::Job.enqueue(CheckTwitterJob.new(hash_tag), 5.minutes.from_now)
   end
   
   def failure
