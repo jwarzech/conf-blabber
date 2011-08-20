@@ -1,10 +1,14 @@
 class TweetsController < ApplicationController
   def index
-    unless params[:after].nil? || params[:after] == 0
+    unless params[:after] == 0
       @tweets =  Tweet.next_set(params[:after])
     else
       @tweets = Tweet.latest_set
     end
-    @latest_tweet = @tweets.maximum(:id)
+    
+    unless @tweets.nil? || @tweets.empty?
+      @tweets.sort_by! { |t| t.id }
+      @latest_tweet = @tweets.last.id
+    end
   end
 end

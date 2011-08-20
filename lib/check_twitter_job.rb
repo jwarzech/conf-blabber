@@ -14,11 +14,11 @@ class CheckTwitterJob < Struct.new(:hash_tag)
     search = Twitter::Search.new
     unless(latest_tweet_id.nil?)
       # Retrieve latest tweets since baseline
-      results = search.containing(hash_tag).no_retweets
-                      .since_id(latest_tweet_id).page(1).fetch
+      results = search.hashtag(hash_tag).no_retweets
+                      .since_id(latest_tweet_id).fetch
     else
       # Setup the initial set of tweets for topic
-      results = search.containing(hash_tag).no_retweets
+      results = search.hashtag(hash_tag).no_retweets
                       .page(1).fetch
     end
     
@@ -39,7 +39,6 @@ class CheckTwitterJob < Struct.new(:hash_tag)
   
   def error(job, exception)
      RAILS_DEFAULT_LOGGER.error("\n Check Twitter Job Error #{exception.message}\n")
-     Delayed::Job.enqueue(CheckTwitterJob.new(hash_tag), 5.minutes.from_now)
   end
   
   def failure
