@@ -6,6 +6,11 @@ group :development do
   gem 'sqlite3'
 end
 
+group :production do
+  gem 'pg'
+  gem 'thin'
+end
+
 # https://github.com/rails/jquery-rails
 gem 'jquery-rails', '>= 1.0.12'
 
